@@ -10,9 +10,7 @@ import path from "path"
 import matter from "gray-matter"
 
 interface ProjectPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>
 }
 
 async function getProjectData(slug: string) {
@@ -32,7 +30,8 @@ async function getProjectData(slug: string) {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const projectData = await getProjectData(params.slug)
+  const { slug } = await params
+  const projectData = await getProjectData(slug)
 
   if (!projectData) {
     notFound()
