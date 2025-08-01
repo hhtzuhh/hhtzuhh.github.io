@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
 import { Python, Java, JavaScript, CSharp, Go, TypeScript, React, Docker, MongoDB, MySQL, PostgreSQL, Redis, AWS, C, Django, FastAPI, Git, Kubernetes, Spring, NextJs, Kafka, GitHubDark, LinkedIn } from "developer-icons"
 import { getVisibleProjects, ProjectConfig } from "@/lib/project-config"
+import { getImagePath } from "@/lib/utils"
 
 export default function Resume() {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -165,7 +166,7 @@ export default function Resume() {
         <div className="text-center py-8 px-6">
           <div className="w-55 h-55 mx-auto mb-4 rounded-full overflow-hidden ring-2 ring-gray-200 dark:ring-gray-600">
             <Image
-              src="/tzu.jpg"
+              src={getImagePath("/tzu.JPG")}
               alt="Tzu-Han Lin"
               width={200}
               height={200}
@@ -231,7 +232,7 @@ export default function Resume() {
             <div className="space-y-6">
               <div className="flex gap-4">
                 <Image
-                    src="/kean.png"
+                    src={getImagePath("/kean.png")}
                     alt="Company icon"
                     width={30}
                     height={30}
@@ -258,7 +259,7 @@ export default function Resume() {
 
               <div className="flex gap-4">
                 <Image
-                    src="/kean.png"
+                    src={getImagePath("/kean.png")}
                     alt="Company icon"
                     width={30}
                     height={30}
