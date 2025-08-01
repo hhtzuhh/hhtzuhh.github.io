@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +14,20 @@ interface ProjectPageProps {
   params: Promise<{ slug: string }>
 }
 
+export async function generateStaticParams() {
+  try {
+    const projectsDirectory = path.join(process.cwd(), "content/projects")
+    const files = await fs.readdir(projectsDirectory)
+    const markdownFiles = files.filter(file => file.endsWith('.md'))
+    
+    return markdownFiles.map(file => ({
+      slug: file.replace('.md', '')
+    }))
+  } catch {
+    return []
+  }
+}
+
 async function getProjectData(slug: string) {
   try {
     const projectsDirectory = path.join(process.cwd(), "content/projects")
@@ -24,7 +39,7 @@ async function getProjectData(slug: string) {
       frontmatter: data,
       content,
     }
-  } catch (error) {
+  } catch {
     return null
   }
 }
@@ -146,13 +161,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {children}
                 </pre>
               ),
-              img: ({ src, alt }) => (
-                <img
-                  src={src || "/placeholder.svg"}
-                  alt={alt}
-                  className="rounded-lg shadow-lg my-6 w-full"
-                />
-              ),
+              img: ({ src, alt }) => {
+                const imageSrc = typeof src === 'string' ? src : "/placeholder.svg"
+                return (
+                  <Image
+                    src={imageSrc}
+                    alt={alt || "Project image"}
+                    width={600}
+                    height={400}
+                    className="rounded-lg shadow-lg my-6 w-full"
+                  />
+                )
+              },
               a: ({ href, children }) => (
                 <a
                   href={href}

@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { MapPin, Clock, ArrowUpRight, ExternalLink, Sun, Moon } from "lucide-react"
+import { MapPin, Clock, ExternalLink, Sun, Moon } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
-import { FaReact, SiTypescript, SiMongodb, SiAws, SiTensorflow } from "react-icons/si"
+import { FaReact } from "react-icons/fa"
+import { SiTypescript, SiMongodb, SiAmazon, SiTensorflow } from "react-icons/si"
 
 export default function Resume() {
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -20,7 +21,7 @@ export default function Resume() {
       { icon: FaReact, bgColor: "bg-blue-500", textColor: "text-white" },
       { icon: SiTypescript, bgColor: "bg-blue-600", textColor: "text-white" },
       { icon: SiMongodb, bgColor: "bg-green-500", textColor: "text-white" },
-      { icon: SiAws, bgColor: "bg-orange-500", textColor: "text-white" },
+      { icon: SiAmazon, bgColor: "bg-orange-500", textColor: "text-white" },
       { icon: SiTensorflow, bgColor: "bg-orange-600", textColor: "text-white" }
     ]
   }
@@ -246,14 +247,17 @@ export default function Resume() {
           {/* Tech Icons */}
           <section>
             <div className="flex flex-wrap gap-4 justify-center py-4">
-              {skillsData.techIcons.map((icon, index) => (
-                <div
-                  key={index}
-                  className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${icon.bgColor}`}
-                >
-                  <span className={`text-xs font-mono ${icon.textColor}`}>{icon.icon}</span>
-                </div>
-              ))}
+              {skillsData.techIcons.map((iconData, index) => {
+                const IconComponent = iconData.icon
+                return (
+                  <div
+                    key={index}
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${iconData.bgColor}`}
+                  >
+                    <IconComponent className={`w-5 h-5 ${iconData.textColor}`} />
+                  </div>
+                )
+              })}
             </div>
           </section>
 

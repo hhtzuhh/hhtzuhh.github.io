@@ -2,18 +2,15 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
-import { MapPin, Clock, ArrowUpRight, ExternalLink, Sun, Moon, Star, GitBranch } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { MapPin, Clock, ExternalLink, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
-import { Python, Java, JavaScript, CSharp, Go, TypeScript, React, Docker, MongoDB, MySQL, PostgreSQL, Redis, AWS, Azure, C, CSS, Django, FastAPI, Git, Kubernetes, Spring, NextJs, Kafka, GitHubDark, YouTube, LinkedIn } from "developer-icons"
-import { fetchGitHubRepos, GitHubRepo } from "@/lib/github"
+import { Python, Java, JavaScript, CSharp, Go, TypeScript, React, Docker, MongoDB, MySQL, PostgreSQL, Redis, AWS, C, Django, FastAPI, Git, Kubernetes, Spring, NextJs, Kafka, GitHubDark, LinkedIn } from "developer-icons"
 import { getVisibleProjects, ProjectConfig } from "@/lib/project-config"
 
 export default function Resume() {
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
-  const [githubRepos, setGithubRepos] = useState<GitHubRepo[]>([])
   const [configuredProjects, setConfiguredProjects] = useState<ProjectConfig[]>([])
   const [showMarker, setShowMarker] = useState(false)
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
@@ -301,7 +298,7 @@ export default function Resume() {
               PROJECTS
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {configuredProjects.map((project, index) => (
+              {configuredProjects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   title={project.title}
