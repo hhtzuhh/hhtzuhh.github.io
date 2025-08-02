@@ -213,7 +213,7 @@ export default function Resume() {
             <h2 className="font-mono text-xl font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-4">ABOUT</h2>
             <div className="relative">
               <p className="text-2xl text-gray-700 dark:text-gray-300 leading-relaxed relative z-10">
-                I build stuffs.
+                I create things.
               </p>
               {/* Curved marker effect */}
               {showMarker && (
