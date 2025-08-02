@@ -20,7 +20,7 @@ export default function Resume() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMarker(true)
-    }, 500)
+    }, 700)
 
     return () => clearTimeout(timer)
   }, [])
@@ -218,7 +218,7 @@ export default function Resume() {
               {/* Curved marker effect */}
               {showMarker && (
                 <div className="absolute inset-0 opacity-0 animate-fade-in pointer-events-none">
-                  <div className="absolute top-0 -left-2 w-40 h-8 bg-orange-400 transform rounded-sm rotate-1 skew-x-20 animate-draw-left-to-right opacity-90"></div>
+                  <div className="absolute top-0 -left-2 w-45 h-8 bg-orange-400 transform rounded-sm rotate-1 skew-x-20 animate-draw-left-to-right opacity-90"></div>
                 </div>
               )}
             </div>
