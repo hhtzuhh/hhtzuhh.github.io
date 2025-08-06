@@ -30,7 +30,7 @@ export const projectConfigs: ProjectConfig[] = [
     title: 'ClipHunt Agent',
     description: 'A multi-agent system that streamlines viral video production. It generates trending video ideas, writes scripts, and automates the discovery and extraction of relevant clips from YouTube.',
     image: '/images/cliphunt.png',
-    href: 'https://github.com/hhtzuhh/cliphunt',
+    href: 'https://github.com/catmei/jaegers.ai',
     category: 'personal',
     technologies: ['Python', 'FastAPI', 'LangGraph', 'Gemini', 'LangChain'],
     githubAccount: 'hhtzuhh',
