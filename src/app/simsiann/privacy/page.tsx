@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">3. Information Sharing</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              We do not sell your personal information. We may share aggregated, non-personal data for analytics purposes. Your posts are visible to other users as part of the app's social features.
+              We do not sell your personal information. We may share aggregated, non-personal data for analytics purposes. Your posts are visible to other users as part of the app&apos;s social features.
             </p>
           </section>
 
@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">8. Children's Privacy</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">8. Children&apos;s Privacy</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Our app is not intended for children under 13. We do not knowingly collect personal information from children under 13.
             </p>
