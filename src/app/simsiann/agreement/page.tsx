@@ -34,7 +34,7 @@ export default function TermsOfService() {
               <div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Prohibited Content:</h3>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  No content that is offensive, harmful, illegal, discriminatory, harassing, threatening, sexually explicit, violent, hateful, or violates others' rights. This includes but is not limited to: hate speech, bullying, doxxing, spam, misinformation, or content promoting illegal activities.
+                  No content that is offensive, harmful, illegal, discriminatory, harassing, threatening, sexually explicit, violent, hateful, or violates others&apos; rights. This includes but is not limited to: hate speech, bullying, doxxing, spam, misinformation, or content promoting illegal activities.
                 </p>
               </div>
 
@@ -92,7 +92,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">8. Limitation of Liability</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              Simsiann is provided 'as is' without warranties. We are not liable for any damages arising from app use.
+              Simsiann is provided &apos;as is&apos; without warranties. We are not liable for any damages arising from app use.
             </p>
           </section>
 
