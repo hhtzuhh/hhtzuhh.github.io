@@ -10,9 +10,65 @@ export interface ProjectConfig {
   repoName?: string;
   externalLink?: string;
   showOnResume: boolean;
+  hackathon?: {
+    name: string;
+    url: string;
+  };
+  prize?: {
+    rank: 1 | 2 | 3 | -1;
+    text: string;
+  };
 }
 
 export const projectConfigs: ProjectConfig[] = [
+    {
+      id: 'simsiann',
+      title: 'simsiann（心聲）:',
+      description: 'Simsiann (心聲) is a location-based storytelling platform that transforms personal experiences into visual narratives anchored to specific geographic locations.',
+      image: '/images/mainapp.png',
+      href: 'https://apps.apple.com/us/app/maptive-simsiann/id6753078675',
+      category: 'personal',
+      technologies: ['ios', 'firebase', 'swift', "firebase", "google cloud function"],
+      githubAccount: 'hhtzuhh',
+      repoName: 'simsiann',
+      showOnResume: true,
+      hackathon: {
+        name: 'RevenueCat Shipaton 2025',
+        url: 'https://devpost.com/software/maptive-simsiann'
+      },
+    },
+    {
+    id: 'BioRag',
+    title: 'BioRAG System - Advanced Protein Cluster Retrieval',
+    description: 'A modular, scalable bio-RAG system that uses recursive retrieval to handle megacontext scenarios for protein cluster analysis. Built with LlamaIndex and designed to scale to millions of proteins without context overflow.',
+    image: '/images/biorag.png',
+    href: 'https://github.com/hhtzuhh/bioRag',
+    category: 'personal',
+    technologies: ['python', 'LlamaIndex'],
+    githubAccount: 'hhtzuhh',
+    repoName: 'bioRag',
+    showOnResume: true,
+    hackathon: {
+      name: 'Lux Capital: AI Agent and Infra Hackathon',
+      url: 'https://devpost.com/software/biorag'
+    },
+    prize: {
+      rank: 2,
+      text: '2nd Best Agent Hack'
+    }
+  },
+  {
+    id: 'snaplingo',
+    title: 'Snaplingo - AI english essay tutor',
+    description: 'SnapLingo is an intelligent AI-powered support system specifically designed to help Taiwanese high school students excel in the English composition section of the General Scholastic Ability Test (GSAT/學測).',
+    image: '/images/snaplingo.png',
+    href: '',
+    category: 'personal',
+    technologies: ['python', 'docker', "mongodb", "next.js"],
+    githubAccount: 'hhtzuhh',
+    repoName: 'snaplingo',
+    showOnResume: true
+  },
   {
     id: 'Market Data Service',
     title: 'Market Data Service',
@@ -35,7 +91,15 @@ export const projectConfigs: ProjectConfig[] = [
     technologies: ['Python', 'FastAPI', 'LangGraph', 'Gemini', 'LangChain'],
     githubAccount: 'hhtzuhh',
     repoName: 'cliphunt',
-    showOnResume: true
+    showOnResume: true,
+    hackathon: {
+      name: 'Open Data Science Conference (ODSC) & Google Cloud Agentic AI Hackathon',
+      url: ''
+    },
+    prize: {
+      rank: -1,
+      text: '20 Finalists'
+    }
   },
   {
     id: 'Breast Ultrasound Segmentation',

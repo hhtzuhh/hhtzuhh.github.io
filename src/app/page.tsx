@@ -307,6 +307,8 @@ export default function Resume() {
                   href={project.href}
                   description={project.description}
                   technologies={project.technologies}
+                  hackathon={project.hackathon}
+                  prize={project.prize}
                 />
               ))}
             </div>
