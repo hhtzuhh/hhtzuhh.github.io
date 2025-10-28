@@ -56,21 +56,21 @@ export default async function ProjectPage({
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              h1: ({node, ...props}) => <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white" {...props} />,
-              h2: ({node, ...props}) => <h2 className="text-3xl font-semibold mt-12 mb-4 text-gray-900 dark:text-white" {...props} />,
-              h3: ({node, ...props}) => <h3 className="text-2xl font-semibold mt-8 mb-3 text-gray-800 dark:text-gray-200" {...props} />,
-              p: ({node, children, ...props}) => {
+              h1: ({...props}) => <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white" {...props} />,
+              h2: ({...props}) => <h2 className="text-3xl font-semibold mt-12 mb-4 text-gray-900 dark:text-white" {...props} />,
+              h3: ({...props}) => <h3 className="text-2xl font-semibold mt-8 mb-3 text-gray-800 dark:text-gray-200" {...props} />,
+              p: ({children, ...props}) => {
                 // Check if paragraph contains a YouTube link (for video embed)
                 const childrenArray = Array.isArray(children) ? children : [children];
 
                 // Check for YouTube link
-                const youtubeChild = childrenArray.find((child: any) => {
-                  const href = child?.props?.href;
+                const youtubeChild = childrenArray.find((child) => {
+                  const href = (child as {props?: {href?: string}})?.props?.href;
                   return href?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                 });
 
                 if (youtubeChild) {
-                  const href = youtubeChild.props.href;
+                  const href = (youtubeChild as {props: {href: string}}).props.href;
                   const youtubeMatch = href.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                   if (youtubeMatch) {
                     return (
@@ -87,16 +87,20 @@ export default async function ProjectPage({
                 }
 
                 // Check if paragraph only contains images (for gallery layout)
-                const hasOnlyImages = childrenArray.every((child: any) => {
+                const hasOnlyImages = childrenArray.every((child) => {
                   // Check if it's an img element or empty text
                   if (!child) return true;
                   if (typeof child === 'string' && child.trim() === '') return true;
-                  if (child?.type === 'img') return true;
-                  if (child?.props?.src) return true; // Image component
+                  const childObj = child as {type?: string; props?: {src?: string}};
+                  if (childObj?.type === 'img') return true;
+                  if (childObj?.props?.src) return true; // Image component
                   return false;
                 });
 
-                if (hasOnlyImages && childrenArray.some((c: any) => c?.type === 'img' || c?.props?.src)) {
+                if (hasOnlyImages && childrenArray.some((c) => {
+                  const cObj = c as {type?: string; props?: {src?: string}};
+                  return cObj?.type === 'img' || cObj?.props?.src;
+                })) {
                   return (
                     <div className="flex flex-wrap gap-4 justify-center my-6">
                       {children}
@@ -106,10 +110,10 @@ export default async function ProjectPage({
 
                 return <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4" {...props}>{children}</p>;
               },
-              ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
-              li: ({node, ...props}) => <li className="text-gray-700 dark:text-gray-300" {...props} />,
-              strong: ({node, ...props}) => <strong className="font-semibold text-gray-900 dark:text-white" {...props} />,
-              img: ({node, alt, src, title, ...props}) => {
+              ul: ({...props}) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
+              li: ({...props}) => <li className="text-gray-700 dark:text-gray-300" {...props} />,
+              strong: ({...props}) => <strong className="font-semibold text-gray-900 dark:text-white" {...props} />,
+              img: ({alt, src, title, ...props}) => {
                 // Parse sizing from title attribute
                 // Supports: "width:500", "height:600", "width:50%", "width:500 height:600"
                 let width: string | undefined;
@@ -147,7 +151,7 @@ export default async function ProjectPage({
                   />
                 );
               },
-              a: ({node, href, children, ...props}) => {
+              a: ({href, children, ...props}) => {
                 // Regular link - check if external
                 const isExternal = href?.startsWith('http');
                 return (
