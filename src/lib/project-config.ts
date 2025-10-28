@@ -26,11 +26,12 @@ export const projectConfigs: ProjectConfig[] = [
       title: 'simsiann（心聲）:',
       description: 'Simsiann (心聲) is a location-based storytelling platform that transforms personal experiences into visual narratives anchored to specific geographic locations.',
       image: '/images/mainapp.png',
-      href: 'https://apps.apple.com/us/app/maptive-simsiann/id6753078675',
+      href: '/projects/simsiann',
       category: 'personal',
       technologies: ['ios', 'firebase', 'swift', "firebase", "google cloud function"],
       githubAccount: 'hhtzuhh',
       repoName: 'simsiann',
+      externalLink: 'https://apps.apple.com/us/app/maptive-simsiann/id6753078675',
       showOnResume: true,
       hackathon: {
         name: 'RevenueCat Shipaton 2025',

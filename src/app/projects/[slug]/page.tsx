@@ -1,194 +1,173 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import Image from "next/image"
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
-import { promises as fs } from "fs"
-import path from "path"
-import matter from "gray-matter"
+import fs from 'fs';
+import path from 'path';
+import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { DarkModeToggle } from '@/components/dark-mode-toggle';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
-interface ProjectPageProps {
-  params: Promise<{ slug: string }>
-}
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const markdownPath = path.join(process.cwd(), 'src/content/projects', `${slug}.md`);
 
-export async function generateStaticParams() {
-  try {
-    const projectsDirectory = path.join(process.cwd(), "content/projects")
-    const files = await fs.readdir(projectsDirectory)
-    const markdownFiles = files.filter(file => file.endsWith('.md'))
-    
-    return markdownFiles.map(file => ({
-      slug: file.replace('.md', '')
-    }))
-  } catch {
-    return []
-  }
-}
-
-async function getProjectData(slug: string) {
-  try {
-    const projectsDirectory = path.join(process.cwd(), "content/projects")
-    const filePath = path.join(projectsDirectory, `${slug}.md`)
-    const fileContents = await fs.readFile(filePath, "utf8")
-    const { data, content } = matter(fileContents)
-    
-    return {
-      frontmatter: data,
-      content,
-    }
-  } catch {
-    return null
-  }
-}
-
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params
-  const projectData = await getProjectData(slug)
-
-  if (!projectData) {
-    notFound()
+  // Check if the markdown file exists
+  if (!fs.existsSync(markdownPath)) {
+    notFound();
   }
 
-  const { frontmatter, content } = projectData
+  const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Back Button */}
+    <div className="min-h-screen bg-gray-900">
+      {/* Fixed buttons - top right */}
+      <div className="fixed top-6 right-6 z-50 flex gap-3">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white mb-8 transition-colors"
+          className="p-2 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
+          aria-label="Back to home"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Resume
+          <ArrowLeft className="w-5 h-5 text-gray-700 dark:text-gray-300" />
         </Link>
+        <DarkModeToggle />
+      </div>
 
-        {/* Project Header */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{frontmatter.title}</h1>
-            {frontmatter.year && (
-              <Badge variant="secondary" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
-                {frontmatter.year}
-              </Badge>
-            )}
-          </div>
-          
-          {frontmatter.description && (
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">{frontmatter.description}</p>
-          )}
-
-          <div className="flex flex-wrap gap-3 mb-6">
-            {frontmatter.liveUrl && (
-              <Button asChild>
-                <a href={frontmatter.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4" />
-                  View Live
-                </a>
-              </Button>
-            )}
-            {frontmatter.githubUrl && (
-              <Button variant="outline" asChild>
-                <a
-                  href={frontmatter.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  <Github className="w-4 h-4" />
-                  View Code
-                </a>
-              </Button>
-            )}
-          </div>
-
-          {frontmatter.technologies && (
-            <div className="flex flex-wrap gap-2">
-              {frontmatter.technologies.map((tech: string) => (
-                <Badge
-                  key={tech}
-                  variant="secondary"
-                  className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Markdown Content */}
-        <div className="prose prose-gray dark:prose-invert max-w-none">
+      {/* Content container with white/dark background */}
+      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 min-h-screen">
+        <div className="px-6 py-16">
+          <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              h1: ({ children }) => (
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">{children}</h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">{children}</h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-lg font-medium text-gray-900 dark:text-white mt-4 mb-2">{children}</h3>
-              ),
-              p: ({ children }) => (
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">{children}</p>
-              ),
-              ul: ({ children }) => (
-                <ul className="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">{children}</ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">{children}</ol>
-              ),
-              li: ({ children }) => (
-                <li className="text-gray-700 dark:text-gray-300">{children}</li>
-              ),
-              blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-400 my-4">
-                  {children}
-                </blockquote>
-              ),
-              code: ({ children }) => (
-                <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded text-sm font-mono text-gray-800 dark:text-gray-200">
-                  {children}
-                </code>
-              ),
-              pre: ({ children }) => (
-                <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4">
-                  {children}
-                </pre>
-              ),
-              img: ({ src, alt }) => {
-                const imageSrc = typeof src === 'string' ? src : "/placeholder.svg"
-                return (
-                  <Image
-                    src={imageSrc}
-                    alt={alt || "Project image"}
-                    width={600}
-                    height={400}
-                    className="rounded-lg shadow-lg my-6 w-full"
-                  />
-                )
+              h1: ({node, ...props}) => <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white" {...props} />,
+              h2: ({node, ...props}) => <h2 className="text-3xl font-semibold mt-12 mb-4 text-gray-900 dark:text-white" {...props} />,
+              h3: ({node, ...props}) => <h3 className="text-2xl font-semibold mt-8 mb-3 text-gray-800 dark:text-gray-200" {...props} />,
+              p: ({node, children, ...props}) => {
+                // Check if paragraph contains a YouTube link (for video embed)
+                const childrenArray = Array.isArray(children) ? children : [children];
+
+                // Check for YouTube link
+                const youtubeChild = childrenArray.find((child: any) => {
+                  const href = child?.props?.href;
+                  return href?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+                });
+
+                if (youtubeChild) {
+                  const href = youtubeChild.props.href;
+                  const youtubeMatch = href.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+                  if (youtubeMatch) {
+                    return (
+                      <div className="my-6 aspect-video max-w-3xl mx-auto">
+                        <iframe
+                          className="w-full h-full rounded-lg"
+                          src={`https://www.youtube.com/embed/${youtubeMatch[1]}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                    );
+                  }
+                }
+
+                // Check if paragraph only contains images (for gallery layout)
+                const hasOnlyImages = childrenArray.every((child: any) => {
+                  // Check if it's an img element or empty text
+                  if (!child) return true;
+                  if (typeof child === 'string' && child.trim() === '') return true;
+                  if (child?.type === 'img') return true;
+                  if (child?.props?.src) return true; // Image component
+                  return false;
+                });
+
+                if (hasOnlyImages && childrenArray.some((c: any) => c?.type === 'img' || c?.props?.src)) {
+                  return (
+                    <div className="flex flex-wrap gap-4 justify-center my-6">
+                      {children}
+                    </div>
+                  );
+                }
+
+                return <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4" {...props}>{children}</p>;
               },
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {children}
-                </a>
-              ),
+              ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
+              li: ({node, ...props}) => <li className="text-gray-700 dark:text-gray-300" {...props} />,
+              strong: ({node, ...props}) => <strong className="font-semibold text-gray-900 dark:text-white" {...props} />,
+              img: ({node, alt, src, title, ...props}) => {
+                // Parse sizing from title attribute
+                // Supports: "width:500", "height:600", "width:50%", "width:500 height:600"
+                let width: string | undefined;
+                let height: string | undefined;
+
+                if (title) {
+                  const widthMatch = title.match(/width:(\d+%?|\d+px|\d+)/);
+                  const heightMatch = title.match(/height:(\d+%?|\d+px|\d+)/);
+
+                  if (widthMatch) {
+                    const value = widthMatch[1];
+                    width = value.includes('%') || value.includes('px') ? value : `${value}px`;
+                  }
+                  if (heightMatch) {
+                    const value = heightMatch[1];
+                    height = value.includes('%') || value.includes('px') ? value : `${value}px`;
+                  }
+                }
+
+                const style: React.CSSProperties = {};
+                if (width) style.width = width;
+                if (height) style.height = height;
+                if (!width && !height) {
+                  style.width = '100%';
+                  style.maxWidth = '800px';
+                }
+
+                return (
+                  <img
+                    src={src}
+                    alt={alt}
+                    style={style}
+                    className="rounded-lg object-contain"
+                    {...props}
+                  />
+                );
+              },
+              a: ({node, href, children, ...props}) => {
+                // Regular link - check if external
+                const isExternal = href?.startsWith('http');
+                return (
+                  <a
+                    href={href}
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    {...props}
+                  >
+                    {children}
+                  </a>
+                );
+              },
             }}
           >
-            {content}
+            {markdownContent}
           </ReactMarkdown>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
+}
+
+// Generate static params for all markdown files in the projects folder
+export async function generateStaticParams() {
+  const projectsDirectory = path.join(process.cwd(), 'src/content/projects');
+  const filenames = fs.readdirSync(projectsDirectory);
+
+  return filenames
+    .filter((filename) => filename.endsWith('.md'))
+    .map((filename) => ({
+      slug: filename.replace('.md', ''),
+    }));
 }
