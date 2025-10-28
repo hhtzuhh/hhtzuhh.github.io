@@ -63,7 +63,7 @@ export const projectConfigs: ProjectConfig[] = [
     title: 'Snaplingo - AI english essay tutor',
     description: 'SnapLingo is an intelligent AI-powered support system specifically designed to help Taiwanese high school students excel in the English composition section of the General Scholastic Ability Test (GSAT/學測).',
     image: '/images/snaplingo.png',
-    href: '',
+    href: '/projects/snaplingo',
     category: 'personal',
     technologies: ['python', 'docker', "mongodb", "next.js"],
     githubAccount: 'hhtzuhh',

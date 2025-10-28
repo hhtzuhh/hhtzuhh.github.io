@@ -20,7 +20,20 @@ export default async function ProjectPage({
     notFound();
   }
 
-  const markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+  let markdownContent: string;
+
+  try {
+    markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+
+    // Check if markdown content is empty or just whitespace
+    if (!markdownContent || markdownContent.trim().length === 0) {
+      console.warn(`Markdown file is empty: ${markdownPath}`);
+      markdownContent = `# ${slug}\n\nThis project page is under construction.`;
+    }
+  } catch (error) {
+    console.error(`Error reading markdown file: ${markdownPath}`, error);
+    notFound();
+  }
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -163,11 +176,21 @@ export default async function ProjectPage({
 // Generate static params for all markdown files in the projects folder
 export async function generateStaticParams() {
   const projectsDirectory = path.join(process.cwd(), 'src/content/projects');
-  const filenames = fs.readdirSync(projectsDirectory);
 
-  return filenames
-    .filter((filename) => filename.endsWith('.md'))
-    .map((filename) => ({
-      slug: filename.replace('.md', ''),
-    }));
+  try {
+    if (!fs.existsSync(projectsDirectory)) {
+      return [];
+    }
+
+    const filenames = fs.readdirSync(projectsDirectory);
+
+    return filenames
+      .filter((filename) => filename.endsWith('.md'))
+      .map((filename) => ({
+        slug: filename.replace('.md', ''),
+      }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
 }
