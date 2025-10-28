@@ -194,3 +194,6 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+// Tell Next.js to return 404 for any slug not in generateStaticParams
+export const dynamicParams = false;

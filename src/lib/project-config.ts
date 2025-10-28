@@ -21,6 +21,23 @@ export interface ProjectConfig {
 }
 
 export const projectConfigs: ProjectConfig[] = [
+      {
+      id: 'leiva',
+      title: 'Levia: Multi-Agent Radiology Intelligence System',
+      description: 'Multi-agent radiology assistant powered by Google Cloud Vertex AI and Elasticsearch, transforming clinical data into conversational insights.',
+      image: '/images/levia/levia.png',
+      href: '/projects/levia',
+      category: 'personal',
+      technologies: ['cloud run', 'google adk', 'vertex ai','ai agent'],
+      githubAccount: 'hhtzuhh',
+      repoName: 'levia',
+      externalLink: 'https://github.com/hhtzuhh/RadiologyAgent',
+      showOnResume: true,
+      hackathon: {
+        name: 'AI Accelerate: Unlocking New Frontiers: Google x Elastic search',
+        url: 'https://devpost.com/software/radiology-intelligence-agent-levia'
+      },
+    },
     {
       id: 'simsiann',
       title: 'simsiann（心聲）:',
