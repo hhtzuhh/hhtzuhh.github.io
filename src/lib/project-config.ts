@@ -22,6 +22,75 @@ export interface ProjectConfig {
 
 export const projectConfigs: ProjectConfig[] = [
       {
+      id: 'aorta',
+      title: 'Aorta',
+      description: 'Real-time sepsis monitoring and prediction platform using Kafka streaming, XGBoost ML for 6-hour early detection, and RAG-powered clinical recommendations. Features microservices architecture with sub-second latency from data ingestion to prediction.',
+      image: '/images/Aorta/main.png',
+      href: '/projects/Aorta',
+      category: 'personal',
+      technologies: ['Confluent Cloud', 'Kafka', 'XGBoost', 'RAG', 'Gemini', 'MongoDB', 'FastAPI', 'React', 'D3.js', 'Terraform'],
+      githubAccount: 'hhtzuhh',
+      repoName: 'aorta',
+      showOnResume: true,
+      hackathon: {
+        name: 'AI Partner Catalyst: Accelerate Innovation Confluent Hackathon',
+        url: 'https://youtu.be/35Gda8PxtP4'
+      },
+    },
+      {
+      id: 'flood_agent',
+      title: 'Flood Agent',
+      description: 'Multi-agent flood detection system combining satellite imagery, AI water segmentation, and ground sensor data. Uses Google ADK orchestration with MCP server to analyze flood events through conversational interface.',
+      image: '/images/flood_agent/s.png',
+      href: '/projects/flood_agent',
+      category: 'personal',
+      technologies: ['Google ADK', 'Gemini 2.5', 'MCP', 'FastAPI', 'Sentinel Hub', 'Prithvi AI', 'NOAA/USGS'],
+      githubAccount: 'tzuhan2424',
+      repoName: 'flood_agent',
+      externalLink: 'https://github.com/tzuhan2424/flood_agent',
+      showOnResume: true,
+      hackathon: {
+        name: 'ODSC NYC Hackathon',
+        url: 'https://youtu.be/aAE-llk9wU4'
+      },
+      prize: {
+        rank: -1,
+        text: 'Top 10 Finalist'
+      }
+    },
+      {
+      id: 'aegisflow',
+      title: 'AegisFlow',
+      description: 'Dual-mode multi-agent observability system deployed on Google Cloud. Features real-time fraud detection and infrastructure monitoring via event-driven agents, plus interactive investigation through A2A agent networks.',
+      image: '/images/aegisflow/logs.png',
+      href: '/projects/aegisflow',
+      category: 'personal',
+      technologies: ['Google Cloud', 'Pub/Sub', 'BigQuery', 'Cloud Run', 'GKE', 'Gemini', 'Multi-Agent'],
+      githubAccount: 'hhtzuhh',
+      repoName: 'aegisflow',
+      showOnResume: true,
+      hackathon: {
+        name: 'Google Cloud Run Hackathon',
+        url: 'https://devpost.com/software/aegisflow-cloud-native-observability-threat-detection'
+      },
+    },
+      {
+      id: 'venueplanner',
+      title: 'Venue Planner',
+      description: 'Revolutionary VR venue design application for Meta Quest that empowers event planners to visualize and design their perfect space using AI-powered object scanning and immersive 1:1 scale walkthroughs.',
+      image: '/images/venueplanner/object.png',
+      href: '/projects/venueplanner',
+      category: 'personal',
+      technologies: ['Meta Quest', 'Kotlin', 'Firebase', 'SAM', 'Tripo3D', 'Cloud Run'],
+      githubAccount: 'hhtzuhh',
+      repoName: 'venueplanner',
+      showOnResume: true,
+      hackathon: {
+        name: 'Meta Horizon Start Developer Competition',
+        url: 'https://devpost.com/software/venue-planner'
+      },
+    },
+      {
       id: 'leiva',
       title: 'Levia: Multi-Agent Radiology Intelligence System',
       description: 'Multi-agent radiology assistant powered by Google Cloud Vertex AI and Elasticsearch, transforming clinical data into conversational insights.',
