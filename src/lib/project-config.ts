@@ -26,7 +26,7 @@ export const projectConfigs: ProjectConfig[] = [
       title: 'Aorta',
       description: 'Real-time sepsis monitoring and prediction platform using Kafka streaming, XGBoost ML for 6-hour early detection, and RAG-powered clinical recommendations. Features microservices architecture with sub-second latency from data ingestion to prediction.',
       image: '/images/Aorta/main.png',
-      href: '/projects/Aorta',
+      href: 'https://github.com/hhtzuhh/Aorta',
       category: 'personal',
       technologies: ['Confluent Cloud', 'Kafka', 'XGBoost', 'RAG', 'Gemini', 'MongoDB', 'FastAPI', 'React', 'D3.js', 'Terraform'],
       githubAccount: 'hhtzuhh',
