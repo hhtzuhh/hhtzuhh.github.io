@@ -86,6 +86,25 @@ export default async function ProjectPage({
                   }
                 }
 
+                // Check for PDF link
+                const pdfChild = childrenArray.find((child) => {
+                  const href = (child as {props?: {href?: string}})?.props?.href;
+                  return href?.endsWith('.pdf');
+                });
+
+                if (pdfChild) {
+                  const href = (pdfChild as {props: {href: string}}).props.href;
+                  return (
+                    <div className="my-6 w-full max-w-3xl mx-auto">
+                      <iframe
+                        src={href}
+                        className="w-full h-[800px] rounded-lg border border-gray-300 dark:border-gray-600"
+                        title="PDF Viewer"
+                      />
+                    </div>
+                  );
+                }
+
                 // Check if paragraph only contains images (for gallery layout)
                 const hasOnlyImages = childrenArray.every((child) => {
                   // Check if it's an img element or empty text
