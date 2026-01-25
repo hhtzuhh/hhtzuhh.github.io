@@ -173,12 +173,17 @@ export default async function ProjectPage({
               a: ({href, children, ...props}) => {
                 // Regular link - check if external
                 const isExternal = href?.startsWith('http');
+                // Add nofollow for old tzuhan2424 links
+                const isTzuhan2424 = href?.includes('tzuhan2424');
+                const relValue = isExternal
+                  ? (isTzuhan2424 ? 'nofollow noopener noreferrer' : 'noopener noreferrer')
+                  : undefined;
                 return (
                   <a
                     href={href}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                     target={isExternal ? '_blank' : undefined}
-                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    rel={relValue}
                     {...props}
                   >
                     {children}
