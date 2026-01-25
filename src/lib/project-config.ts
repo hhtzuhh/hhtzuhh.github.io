@@ -213,6 +213,42 @@ export const projectConfigs: ProjectConfig[] = [
     repoName: 'kean-capstone',
     showOnResume: true
   },
+  {
+    id: 'marsTerrain',
+    title: 'Mars Terrain Type Segmentation with Novel Edge Detection',
+    description: 'Deep learning semantic segmentation system using FCN with novel edge detection channel inspired by DeepLabV3+ to identify safer Mars landing areas and rover exploration zones. Improved bedrock terrain recall through encoder-decoder architecture with edge boundary enhancement.',
+    image: '/images/mars/mars.png',
+    href: 'https://tzuhan2424.github.io/projects/marsTerrain/',
+    category: 'academic',
+    technologies: ['Machine Learning', 'Computer Vision', 'Image Segmentation'],
+    githubAccount: 'tzuhan2424',
+    externalLink: 'https://tzuhan2424.github.io/projects/marsTerrain/',
+    showOnResume: true
+  },
+  {
+    id: 'analysisOfCrimeUnemployment',
+    title: 'Analysis of Crime and Unemployment Pre and Post-Pandemic',
+    description: 'Comprehensive analysis of COVID-19\'s multifaceted economic impact (2018-2023) examining unemployment rates, stock market indices (DJIA, NASDAQ, S&P 500), LinkedIn job postings, and crime rates to understand pandemic effects on the US economy.',
+    image: '/images/datamining_course/datamining.png',
+    href: 'https://tzuhan2424.github.io/projects/analysisOfCrimeUnemployment/',
+    category: 'academic',
+    technologies: ['Data Analysis', 'Statistics', 'Python'],
+    githubAccount: 'tzuhan2424',
+    externalLink: 'https://tzuhan2424.github.io/projects/analysisOfCrimeUnemployment/',
+    showOnResume: true
+  },
+  {
+    id: 'covidIncome',
+    title: 'THE IMPACT OF HOUSEHOLD INCOME ON COVID-19 DEATHS',
+    description: 'Statistical analysis joining 2020 US Census and COVID-19 datasets to reveal significant correlation between household income and COVID-19 mortality rates, uncovering demographic factors in pandemic outcomes.',
+    image: '/images/covid_analysis/covid_analysis.png',
+    href: 'https://tzuhan2424.github.io/projects/covidIncome/',
+    category: 'academic',
+    technologies: ['Data Analysis', 'Statistics', 'Public Health'],
+    githubAccount: 'tzuhan2424',
+    externalLink: 'https://tzuhan2424.github.io/projects/covidIncome/',
+    showOnResume: true
+  },
 ];
 
 export const githubAccounts = [
