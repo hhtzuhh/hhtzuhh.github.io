@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { MapPin, Clock, ExternalLink, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
@@ -279,6 +280,10 @@ export default function Resume() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1 h-1 bg-gray-400 dark:bg-gray-500 rounded-full mt-2 flex-shrink-0"></span>
+                      <Link href="/projects/breast-ultrasound-segmentation" className="text-blue-600 dark:text-blue-400 hover:underline">
+                        View Research Paper
+                      </Link>
+                      {" • "}
                       <a href="https://ieeexplore.ieee.org/document/10781719" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
                         IEEE Paper Link
                       </a>

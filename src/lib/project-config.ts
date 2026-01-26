@@ -193,7 +193,7 @@ export const projectConfigs: ProjectConfig[] = [
     title: 'Breast Ultrasound Segmentation',
     description: 'Novel weakly supervised learning framework for breast ultrasound image segmentation, accepted by IEEE EMBC 2024.',
     image: '/images/breastcancer.png',
-    href: 'https://ieeexplore.ieee.org/document/10781719',
+    href: '/projects/breast-ultrasound-segmentation',
     category: 'academic',
     technologies: ['Pytorch', 'Deep Learning'],
     githubAccount: '',
