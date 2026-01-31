@@ -41,7 +41,16 @@ export default function Resume() {
 
     // Observe all sections
     const sections = document.querySelectorAll('section[id]')
-    sections.forEach(section => observer.observe(section))
+    sections.forEach(section => {
+      observer.observe(section)
+
+      // Check if section is already in viewport on initial load (fixes mobile issue)
+      const rect = section.getBoundingClientRect()
+      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
+      if (isInViewport) {
+        setVisibleSections(prev => new Set([...prev, section.id]))
+      }
+    })
 
     return () => observer.disconnect()
   }, [])
