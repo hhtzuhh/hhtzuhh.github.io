@@ -36,20 +36,30 @@ export default function Resume() {
           }
         })
       },
-      { threshold: 0.1, rootMargin: '-50px' }
+      {
+        threshold: 0.05, // Lower threshold for mobile
+        rootMargin: '0px' // Remove negative margin that can cause issues on mobile
+      }
     )
 
     // Observe all sections
     const sections = document.querySelectorAll('section[id]')
-    sections.forEach(section => {
-      observer.observe(section)
+    sections.forEach(section => observer.observe(section))
 
-      // Check if section is already in viewport on initial load (fixes mobile issue)
-      const rect = section.getBoundingClientRect()
-      const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
-      if (isInViewport) {
-        setVisibleSections(prev => new Set([...prev, section.id]))
-      }
+    // Check if sections are already in viewport after layout settles (fixes mobile issue)
+    const checkInitialVisibility = () => {
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect()
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0
+        if (isInViewport) {
+          setVisibleSections(prev => new Set([...prev, section.id]))
+        }
+      })
+    }
+
+    // Use requestAnimationFrame to ensure layout has settled
+    requestAnimationFrame(() => {
+      setTimeout(checkInitialVisibility, 100)
     })
 
     return () => observer.disconnect()
