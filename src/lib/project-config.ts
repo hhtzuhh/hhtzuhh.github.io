@@ -21,22 +21,81 @@ export interface ProjectConfig {
 }
 
 export const projectConfigs: ProjectConfig[] = [
-      {
-      id: 'aorta',
-      title: 'Aorta',
-      description: 'Real-time sepsis monitoring and prediction platform using Kafka streaming, XGBoost ML for 6-hour early detection, and RAG-powered clinical recommendations. Features microservices architecture with sub-second latency from data ingestion to prediction.',
-      image: '/images/Aorta/main.png',
-      href: 'https://github.com/hhtzuhh/Aorta',
-      category: 'personal',
-      technologies: ['Confluent Cloud', 'Kafka', 'XGBoost', 'RAG', 'Gemini', 'MongoDB', 'FastAPI', 'React', 'D3.js', 'Terraform'],
-      githubAccount: 'hhtzuhh',
-      repoName: 'aorta',
-      showOnResume: true,
-      hackathon: {
-        name: 'AI Partner Catalyst: Accelerate Innovation Confluent Hackathon',
-        url: 'https://youtu.be/35Gda8PxtP4'
-      },
+  {
+    id: 'aorta',
+    title: 'Aorta',
+    description: 'Real-time sepsis monitoring and prediction platform using Kafka streaming, XGBoost ML for 6-hour early detection, and RAG-powered clinical recommendations. Features microservices architecture with sub-second latency from data ingestion to prediction.',
+    image: '/images/Aorta/main.png',
+    href: 'https://github.com/hhtzuhh/Aorta',
+    category: 'personal',
+    technologies: ['Confluent Cloud', 'Kafka', 'XGBoost', 'RAG', 'Gemini', 'MongoDB', 'FastAPI', 'React', 'D3.js', 'Terraform'],
+    githubAccount: 'hhtzuhh',
+    repoName: 'aorta',
+    showOnResume: true,
+    hackathon: {
+      name: 'AI Partner Catalyst: Accelerate Innovation Confluent Hackathon',
+      url: 'https://youtu.be/35Gda8PxtP4'
     },
+    prize: {
+      rank: 1,
+      text: 'Winner Confluent Challenge: First Place'
+    }
+  },
+  {
+    id: 'ama',
+    title: 'AMA: Interactive Story Studio',
+    description: 'A storybook doesn\'t have to be static — characters can speak, react to what a child says, and branch the narrative in real time.',
+    image: '/images/AMA/overall_ui.png',
+    href: 'https://github.com/hhtzuhh/AMA',
+    category: 'personal',
+    technologies: ['Gemini 3', 'Veo 3', 'React Flow', 'TypeScript', 'Terraform', 'GCP'],
+    githubAccount: 'hhtzuhh',
+    repoName: 'AMA',
+    externalLink: 'https://github.com/hhtzuhh/AMA',
+    showOnResume: true,
+    hackathon: {
+      name: 'Gemini Live Agent Challenge',
+      url: 'https://youtu.be/xPXh4sGJW90'
+    },
+  },
+  {
+    id: 'radvia',
+    title: 'RadVia - AI-Orchestrated Radiology Triage, Clinical Synthesis, and Dictation',
+    description: 'The radiology copilot that triages the queue, briefs the doctor, and writes the report — powered by Google\'s medical AI suite.',
+    image: '/images/Radvia/radvia.png',
+    href: 'https://github.com/hhtzuhh/RadVia',
+    category: 'personal',
+    technologies: ['Google Cloud', 'Medical AI', 'Gemini', 'FastAPI', 'React'],
+    githubAccount: 'hhtzuhh',
+    repoName: 'RadVia',
+    externalLink: 'https://github.com/hhtzuhh/RadVia',
+    showOnResume: true,
+    hackathon: {
+      name: 'The MedGemma Impact Challenge',
+      url: 'https://youtu.be/-B9KZ2RR1Jk'
+    },
+  },
+  {
+    id: 'beatdrop',
+    title: 'BeatDrop',
+    description: 'A multiplayer rhythm game built on Lyria 3 — Google\'s latest real-time music generation model. Players hit beats on their phones while the crowd collectively votes to reshape the live AI-generated soundtrack, beat by beat.',
+    image: '/images/beatdrop/beat.jpeg',
+    href: 'https://github.com/shresthkapoor7/beat-drop',
+    category: 'personal',
+    technologies: ['Lyria 3', 'Google Cloud', 'React', 'TypeScript'],
+    githubAccount: 'hhtzuhh',
+    repoName: 'beat-drop',
+    externalLink: 'https://github.com/shresthkapoor7/beat-drop',
+    showOnResume: true,
+    hackathon: {
+      name: 'Cerebral Valley x Gemini 3 NYC Hackathon',
+      url: ''
+    },
+    prize: {
+      rank: -1,
+      text: 'Top 6 Finalists'
+    }
+  },
       {
       id: 'flood_agent',
       title: 'Flood Agent',
